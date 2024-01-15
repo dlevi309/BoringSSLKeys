@@ -59,7 +59,7 @@ iOS 13.3.1 libboringssl.dylib
 static void (*orig_SSL_CTX_set_min_proto_version)(void *ctx, uint16_t version);
 static void new_SSL_CTX_set_min_proto_version(void *ctx, uint16_t version) {
     intptr_t ctx_char = (intptr_t)ctx;
-    intptr_t **keylog_callback = (intptr_t **)(ctx_char + 0x2c0); // change this offset per iOS version
+    intptr_t **keylog_callback = (intptr_t **)(ctx_char + 0x2b8)); // change this offset per iOS version
     *keylog_callback = (intptr_t *)call_back;
 
     orig_SSL_CTX_set_min_proto_version(ctx, version);
